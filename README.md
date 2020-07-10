@@ -1,2 +1,3 @@
 # Telstra-Network-Disruptions
-Predict service faults on Australia's largest telecommunications network
+
+Este repositorio contiene mi contribucion a a la competencia en en Kaggle **Telstra Network Disruptions**[https://www.kaggle.com/c/telstra-recruiting-network/overview] 
