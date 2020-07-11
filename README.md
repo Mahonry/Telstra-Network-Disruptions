@@ -296,10 +296,16 @@ Se pusieron a prueba los datasets 'train_1' y 'train_consolidado_completo', sin 
 Una caracteristica de los algortimos Random Forest Classifier y Gradient Boosting Classfier es que devuelve las relevancia de features, por lo que se me hizo intersante analizar que features habian sido mas relevantes para el Gradient Boosting Classfier y comparar con una tecnica de seleccion de features automatica SelectKBest''.
 
 - Visualice las relevancia de features para el Gradient Boosting Classfier.
-[imagen]
+
+<p align="center">
+  <img src="./GBC_features_primer_iteracion.png">
+</p>
 
 - Entrene el selector automatico 'SelectKBest' con k = 64 y las visualice.
-[imagen]
+
+<p align="center">
+  <img src="./SelectK_features_primer_iteracion.png">
+</p>
 
 - Compare si estos dos mecanismos habian elegido las mismas features relevantes, coincidieron en 10 features.
 
@@ -326,7 +332,9 @@ Una vez obtenidos todos estos rendimientos, seleccione el modelo que tuviera la 
 
 El resultado fue:
 
-[imagen]
+<p align="center">
+  <img src="./submission_1.png">
+</p>
 
 
 ### [Gradient Boostin Classifier](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Gradient_Boosting_Classifier.ipynb) 
@@ -425,18 +433,26 @@ Modifique algunos hiperametros mas individualmente, solo para ver los rendimient
 
 Despues de hacer el GridSearchCV obtuve la mejor combinacion de hiperametros, entrene el model y realice la ['submission_2'], que puntuo en Kaggle con el siguiente score:
 
+<p align="center">
+  <img src="./submission_2.png"> 
+</p>
 
 Sin embargo en este punto fui mas exahustivo y analice mas a fonde los resultados dados por este modelo.
 
 Empece fijandome en la importancia de features dadas por el mismo modelo, a continuacion pongo una muestra.
 
-[imagen]
+<p align="center">
+  <img src="./Feature_importance_GBC.png"> 
+</p>
+
 
 De lo cual conclui que mi inuticion sobre 'log_feature' fue cierta ya que muchas de esas features fueron puntuadas con mayor relevancia, aunque sin ser las mas relevantes.
 
 A continuacion muestro la matriz de confusion.
 
-[imagen]
+<p align="center">
+  <img src="./confusion_matrix_GBC.png"> 
+</p>
 
 Y luego lo mas interesante, ¿Que tan bien esta prediciendo mi modelo las etiquetas?, a continuacion muestro el 'classification report':
 
@@ -466,11 +482,16 @@ XGBoost significa Extreme Gradient Boosting; Es una implementación específica 
 
 De igual manera hice algunas iteraciones para probar el rendimiento, en este caso por cuestiones de tiempo use RandomizedSearchCV para buscar la mejor combinacion de hiperparametros y realice la ['submission_3'] que puntuo en Kaggle con el siguiente score:
 
-[imagen]
+<p align="center">
+  <img src="./submission_3.png"> 
+</p>
 
 A continuacion, igual que en el punto anterior, expongo la matriz de confusion y el reporte clasificatorio:
 
-[imagen]
+<p align="center">
+  <img src="./confusion_matrix_xgboost.png"> 
+</p>
+
 
 
               precision    recall  f1-score   support
@@ -492,4 +513,8 @@ De aqui podemos concluir lo siguiente:
 
 - Es posible que haya una mejor seleccion de hiperparametros para XGBoost ya que no realice una busqueda exhaustiva de los mejores, solo probe combinaciones aleatorias.
 
-Sin embargo, la diferencia significativa entre GBC y XGBoost viene en la relevancia de features, a continuacion pongo la muestra de XGBoost
+Sin embargo, la diferencia significativa entre GBC y XGBoost viene en la relevancia de features, a continuacion pongo la muestra de XGBoost:
+
+<p align="center">
+  <img src="./Feature_importance_xgboost.png"> 
+</p>
