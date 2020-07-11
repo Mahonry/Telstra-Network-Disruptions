@@ -33,7 +33,7 @@ El objetivo del problema es predecir la gravedad de la falla de la red de Telstr
 
 ## Inspección los datos.
 
-### train.csv
+### [train.csv](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Datasets_challenge/train.csv)
 
     Tamaño: (7381, 3) 
     
@@ -67,7 +67,7 @@ El objetivo del problema es predecir la gravedad de la falla de la red de Telstr
 
 - Sin valores nulos
 
-### test.csv
+### [test.csv](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Datasets_challenge/test.csv)
 
     Tamaño: (11171, 2)
 
@@ -90,7 +90,7 @@ El objetivo del problema es predecir la gravedad de la falla de la red de Telstr
 
 - Sin valores nulos.
 
-### even_type.csv
+### [even_type.csv](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Datasets_challenge/event_type.csv)
 
     Tamaño (31170, 2)
 
@@ -113,7 +113,7 @@ El objetivo del problema es predecir la gravedad de la falla de la red de Telstr
 
 - Sin valores nulos.
 
-### log_feature.csv
+### [log_feature.csv](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Datasets_challenge/log_feature.csv)
 
     Tamaño (58671, 3)
 
@@ -138,7 +138,7 @@ El objetivo del problema es predecir la gravedad de la falla de la red de Telstr
 
 - Sin valores nulos
 
-### resource_type.csv
+### [resource_type.csv](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Datasets_challenge/resource_type.csv)
 
     Tamaño (21076, 2)
 
@@ -161,7 +161,7 @@ El objetivo del problema es predecir la gravedad de la falla de la red de Telstr
 
 - Sin valores nulos
 
-### severity_type.csv
+### [severity_type.csv](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Datasets_challenge/severity_type.csv)
 
     tamaño: (18552, 2)
 
@@ -431,7 +431,7 @@ Modifique algunos hiperparámetros más individualmente, solo para ver los rendi
 
 #### Análisis de resultados
 
-Después de hacer el GridSearchCV obtuve la mejor combinación de hiperparámetros, entrene el modelo y realice la ['submission_2'], que puntuó en Kaggle con el siguiente score:
+Después de hacer el GridSearchCV obtuve la mejor combinación de hiperparámetros, entrene el modelo y realice la ['submission_2'](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Submission/submission_2.csv), que puntuó en Kaggle con el siguiente score:
 
 <p align="center">
   <img src="./img/submission_2.png"> 
@@ -480,7 +480,7 @@ XGBoost significa Extreme Gradient Boosting; Es una implementación específica 
 
 2.) Y la regularización avanzada (L1 y L2), que mejora la generalización del modelo.
 
-De igual manera hice algunas iteraciones para probar el rendimiento, en este caso por cuestiones de tiempo use RandomizedSearchCV para buscar la mejor combinación de hiperparámetros y realice la ['submission_3'] que puntuó en Kaggle con el siguiente score:
+De igual manera hice algunas iteraciones para probar el rendimiento, en este caso por cuestiones de tiempo use RandomizedSearchCV para buscar la mejor combinación de hiperparámetros y realice la ['submission_3'](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Submission/submission_3.csv) que puntuó en Kaggle con el siguiente score:
 
 <p align="center">
   <img src="./img/submission_3.png"> 
@@ -500,9 +500,9 @@ A continuación, igual que en el punto anterior, expongo la matriz de confusión
            1       0.60      0.53      0.56       583
            2       0.56      0.55      0.56       215
 
-    accuracy                           0.74      2215
+    accuracy                            0.74      2215
     macro avg       0.66      0.65      0.65      2215
-    weighted avg       0.73      0.74      0.74      2215
+    weighted avg    0.73      0.74      0.74      2215
 
 
 De aquí podemos concluir lo siguiente:
@@ -519,3 +519,22 @@ Sin embargo, la diferencia significativa entre GBC y XGBoost viene en la relevan
   <img src="./img/Feature_importance_xgboost.png"> 
 </p>
  
+
+## Conclusiones  y comentarios finales
+### Conclusiones:
+  -	Ambos modelos finales GBC y XGBoost tienen rendimientos similares, pero con  diferente relevancia de features, lo que sugiere que podría haber alguna otra combinación de features que dieran mejor rendimiento a los modelos.
+  -	Ambos modelos son buenos prediciendo etiquetas del tipo 0, sin embargo, tienen problemas al predecir etiquetas de los tipos 1 y 2, que son las que tienen una mayor relevancia para Telstra.
+-	La característica ‘log_feature’ fue significativa para el rendimiento de los modelos.
+-	Considero que para mejorar el rendimiento se requiere de una mejor selección de features e ingeniería con estas, mas que del perfeccionamiento de los algoritmos en sí.
+
+### Comentarios:
+-	Comparando mis resultados  con los demás competidores de Kaggle, mi rendimiento se encuentra entre los  aproximadamente 50% mejores.
+-	Los modelos ya entrenados pueden encontrarse en la carpeta [Models.](https://github.com/Mahonry/Telstra-Network-Disruptions/tree/master/Models)
+
+### Por mejorar:
+
+A continuación, describo los siguientes pasos que hubiera tomado con el fin de mejorar las predicciones:
+-	Probar con otro tipo de algoritmo clasificatorio o redes neuronales.
+-	Tratar de encontrar patrones escondidos dentro de las features dadas.
+-	Usar algunas técnicas como ‘Up-sample Minority Class’ o ‘Down – sample Majority Class’ para tratar de balancear las clases.	
+
