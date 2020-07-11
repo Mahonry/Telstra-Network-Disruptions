@@ -1,6 +1,6 @@
 # Telstra-Network-Disruptions
 
-Este repositorio contiene mi contribucion a a la competencia en en Kaggle [**Telstra Network Disruptions**](https://www.kaggle.com/c/telstra-recruiting-network/overview), cuyo objetivo es predecir la severidad de las interrupciones de su servicio, usando un conjunto de datos de características de sus registros de servicio, tiene la tarea de predecir si una interrupción es una falla momentánea o una interrupción total de la conectividad.
+Este repositorio contiene mi contribucion a la competencia en en Kaggle [**Telstra Network Disruptions**](https://www.kaggle.com/c/telstra-recruiting-network/overview), cuyo objetivo es predecir la severidad de las interrupciones de su servicio, usando un conjunto de datos de características de sus registros de servicio, tiene la tarea de predecir si una interrupción es una falla momentánea o una interrupción total de la conectividad.
 
 Expondre todo el proceso, desde el entendimiento de los datos hasta mis resultados finales.
 
@@ -191,7 +191,7 @@ Todo el proceso de preparacion de los datos puede verse en el notebook [Data_Pre
 
 Los datasets generados pueden verse en la carpeta [Data extraida](https://github.com/Mahonry/Telstra-Network-Disruptions/tree/master/Data%20extraida).
 
-Se generaron 3 datasets con diferentes, para probar su desempeño en los modelos, los 3 se crearon de manera similar, a continuacion explicare los pasos comunes para consolidarlos:
+Se generaron 3 datasets con diferentes features, para probar su desempeño en los modelos, los 3 se crearon de manera similar, a continuacion explicare los pasos comunes para consolidarlos:
 
 1._ Para los datasets, 'even_type.csv','resource_type.csv' y 'severity_type.csv.' se agrupa las columnas  de variables categoricas por 'id'.
 
@@ -217,20 +217,20 @@ el numero total de features en estos datasets es de 269.
 
 ## Modelado y Evaluacion
 
-Reliace varios modelos y pruebas, ya que con el primer prototipo de modelo, obtuve un puntaje en Kaggle que cumplia con el requisito de ser menor a 0.7 y me puse como meta personal bajarlo lo mas posible mientras tuviera tiempo, por lo describire como llegue a obtener mi mejor puntaje que fue _____________, y como evalue los modelos entrenados.
+Reliace varios modelos y pruebas, ya que con el primer prototipo de modelo, obtuve un puntaje en Kaggle que cumplia con el requisito de ser menor a 0.7 y me puse como meta personal bajarlo lo mas posible mientras tuviera tiempo, por lo describire como llegue a obtener mi mejor puntaje que fue 0.54013, y como evalue los modelos entrenados.
 
 **Consideraciones importantes**
 
 - Me concentre en evaluar y mejorar los modelos con la metrica 'multi-class logaritmic loss' ya que seria esta la que Kaggle usaria para puntuar mis predicciones.
 
--  Ya que era un problema con clases desequilibradas habia que prestar especial atencion a estas clases  y usar una metrica correcta, para los modelos finales, tambien me fije en el f1_score y en las matriz de confusion.
+-  Ya que era un problema con clases desequilibradas habia que prestar especial atencion a estas clases  y usar una metrica correcta, para los modelos finales, tambien me fije en el recall y en las matriz de confusion.
 
 
 ### [Primer prototipaje](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Primer_prototipaje.ipynb)
 
 En este notebook, relice las primeras pruebas, para ver el rendimiento de disitintos algoritmos con los distintos datsets, no me centre tanto en el rendimiento, si no en tener un panorama general, para luego optimizarlo.
 
-Seleccione cuatro modelos que en general sirvieran para clasificaciones multiclase y con los que ademas ya estuviera un poco familiarizado con ellos, para poder entender mejor lo que hacian, los algoritmos que seleccione fueron:
+Seleccione cuatro modelos que en general sirvieran para clasificaciones multiclase y con los que ademas ya estuviera un poco familiarizado, para poder entender mejor lo que hacian, los algoritmos que seleccione fueron:
 
 * Random Forest Classifier (RF)
 
@@ -242,7 +242,7 @@ Seleccione cuatro modelos que en general sirvieran para clasificaciones multicla
 
 En estas pruebas no realice ninguna optimizacion de hiperparametros por lo que, todos los modelos fueron entrandos con los parametros estandar.
 
-Se pusieron a prueba los datasets 'train_1' y 'train_consolidado_completo', sin embargo, al hacer las primeras pruebas, me percate que realmente no habia una diferencia significativa en los rendimientos y el tiempo de entrenamiento del dataset 'train_consolidado_completo' era signficativamente mayor, como solo queria ver el panorama general de los rendimiento, descarte este ultimo dataset y todas las pruebas las realice con 'train_1'.
+Se pusieron a prueba los datasets 'train_1' y 'train_consolidado_completo', sin embargo, al hacer las primeras pruebas, me percate que realmente no habia una diferencia significativa en los rendimientos y el tiempo de entrenamiento del dataset 'train_consolidado_completo' era signficativamente mayor, como solo queria ver el panorama general de los rendimientos, descarte este ultimo dataset y todas las pruebas las realice con 'train_1'.
 
 #### Primera prueba, dataset sin modificaciones
 
@@ -303,7 +303,7 @@ Una caracteristica de los algortimos Random Forest Classifier y Gradient Boostin
 
 - Compare si estos dos mecanismos habian elegido las mismas features relevantes, coincidieron en 10 features.
 
-##### Tercera prueba, Seleccion automatica de features y rescalamiento de datos
+#### Tercera prueba, Seleccion automatica de features y rescalamiento de datos
 
     - De igual manera reescale los datos, pero use el selector automatico para que seleccionara las features, los resultados son los siguientes:
 
@@ -322,8 +322,174 @@ Una caracteristica de los algortimos Random Forest Classifier y Gradient Boostin
 
 #### Analizando rendimientos
 
-Una vez obtenidos todos estos rendimientos, seleccione el modelo que tuviera la menor medida en la metrica 'log_loss' que fue Gradient Boosting Classifier y además este mismo tenia el mejor score, por lo que seleccione este modelo para optimizarlo, sin embargo con estas condiciones, realice una primera prediccion ['Submission_1'](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Submission/submision_1.csv) para puntuar en Kaggle.
+Una vez obtenidos todos estos rendimientos, seleccione el modelo que tuviera la menor medida en la metrica 'log_loss' que fue Gradient Boosting Classifier y además este mismo tenia el mejor score, por lo que, seleccione este modelo para optimizarlo, sin embargo con estas condiciones, realice una primera prediccion ['Submission_1'](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Submission/submision_1.csv) para puntuar en Kaggle.
 
 El resultado fue:
 
 [imagen]
+
+
+### [Gradient Boostin Classifier](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/Gradient_Boosting_Classifier.ipynb) 
+
+Una vez teniendo un modelo 'decente' me propuse a mejorarlo, aqui hay varias puntos a notar:
+
+- Me propuse a hacer una optimizacion de hiperparametros para el Gradient Boosting Classifier (GBC) con la intencion de mejorar el rendimiento en la metrica 'log_loss'.
+
+- Aqui realice una visualzacion mas exhaustiva del rendimiento, que describire mas adelante.
+
+- En la seccion anterior me di cuenta que no habia diferencias notables entre los datasets 'train_1' y 'train_consolidado_completo' pero sentia que en 'train_1' estaba perdiendo informacion, con el analisis de features de la seccion anterior vi que se daba mucha importancia a las features creadas con los datos de 'log_feature.csv', por lo que mi razonamiento fue: 'Tal vez haber creado solo 10 grupos percentiles no fue lo mejor, sin embargo, tampoco hay mucha diferencia en conservar todas las categorias, pero probare reduciendolas a la mitad'. 
+
+- Aqui fue donde me decidi crear los datasets 'train_2' y 'test_2' y ponerlos a competir con 'test_1' y 'train_1', probando diferentes combinaciones de hiperparmetros para ver si mejoraba el rendimiento.
+
+- Las pruebas las hice con los datasets 'train_1' y 'train_2' sin modificar y tambien reescalando los datos con StandardScaler(), asi que las primeras  pruebas las hice sobre 4 datasets. 
+
+#### Explorando 'Learning Rate'
+
+    Explore como se desempeñaba el GBC modificando el hiperparametro learning rate, el rango de prueba fue [1, 0.5, 0.25, 0.1, 0.05, 0.01].
+
+    Los resultados fueron:
+
+    learning_rate: 1
+    log_loss_normal: 0.6757316523244108
+    log_loss_scaled: 0.6757072990224782
+    log_loss_normal_2: 0.6731948213472368
+    log_loss_scaled_2: 0.6691173692772026
+    ________________________________________
+    learning_rate: 0.5
+    log_loss_normal: 0.5802708636613513
+    log_loss_scaled: 0.5764201985351942
+    log_loss_normal_2: 0.5474870295504296
+    log_loss_scaled_2: 0.5519166097659621
+    ________________________________________
+    learning_rate: 0.25
+    log_loss_normal: 0.5569741356595201
+    log_loss_scaled: 0.557221732741579
+    log_loss_normal_2: 0.5374604996918831
+    log_loss_scaled_2: 0.5364652059653995
+    ________________________________________
+    learning_rate: 0.1
+    log_loss_normal: 0.5797996081563771
+    log_loss_scaled: 0.5797144138923297
+    log_loss_normal_2: 0.5585793495023701
+    log_loss_scaled_2: 0.5587060488611008
+    ________________________________________
+    learning_rate: 0.05
+    log_loss_normal: 0.6049939845752661
+    log_loss_scaled: 0.605001253676208
+    log_loss_normal_2: 0.5809677668007277
+    log_loss_scaled_2: 0.5809793431340788
+    ________________________________________
+    learning_rate: 0.01
+    log_loss_normal: 0.6958062427653955
+    log_loss_scaled: 0.6958062316152474
+    log_loss_normal_2: 0.6785354718923399
+    log_loss_scaled_2: 0.6785289041764625
+    ________________________________________
+
+    Se observa una sutil pero notable diferencia entre los datasets, siendo 'train_2' el que mejor rendimiento tienen en el learning rate 0.25.
+
+#### Explorando 'n_estimators'
+
+    De nuevo realice una exploracion pero ahora modificando el hiperparametro 'n_estimators' en el rango [100,300,500,700]
+
+    n_estimators: 100
+    log_loss_normal: 0.5796424729936192
+    log_loss_scaled: 0.5798056319358651
+    log_loss_normal_2: 0.5587139918649036
+    log_loss_scaled_2: 0.5588190808155445
+    ________________________________________
+    n_estimators: 300
+    log_loss_normal: 0.5533659195969174
+    log_loss_scaled: 0.5533006753202276
+    log_loss_normal_2: 0.533847794842595
+    log_loss_scaled_2: 0.5337433042844643
+    ________________________________________
+    n_estimators: 500
+    log_loss_normal: 0.5524969095129266
+    log_loss_scaled: 0.5527578162081834
+    log_loss_normal_2: 0.5320054979300892
+    log_loss_scaled_2: 0.532043406583292
+    ________________________________________
+    n_estimators: 700
+    log_loss_normal: 0.5586118723180455
+    log_loss_scaled: 0.5592284020427745
+    log_loss_normal_2: 0.5371383023999352
+    log_loss_scaled_2: 0.5367254063234762
+    ________________________________________
+
+    Con 500 tuve la menor perdida.
+
+Modifique algunos hiperametros mas individualmente, solo para ver los rendimientos en cuanto a los datasets, conclusion: el datset 2 tiene mejor desempeño, proceder a realizar un GridSearchCV para obtener el modelo final.
+
+#### Analisis de resultados
+
+Despues de hacer el GridSearchCV obtuve la mejor combinacion de hiperametros, entrene el model y realice la ['submission_2'], que puntuo en Kaggle con el siguiente score:
+
+
+Sin embargo en este punto fui mas exahustivo y analice mas a fonde los resultados dados por este modelo.
+
+Empece fijandome en la importancia de features dadas por el mismo modelo, a continuacion pongo una muestra.
+
+[imagen]
+
+De lo cual conclui que mi inuticion sobre 'log_feature' fue cierta ya que muchas de esas features fueron puntuadas con mayor relevancia, aunque sin ser las mas relevantes.
+
+A continuacion muestro la matriz de confusion.
+
+[imagen]
+
+Y luego lo mas interesante, ¿Que tan bien esta prediciendo mi modelo las etiquetas?, a continuacion muestro el 'classification report':
+
+              precision    recall  f1-score   support
+
+           0       0.82      0.85      0.83      1417
+           1       0.58      0.53      0.56       583
+           2       0.56      0.53      0.54       215
+
+    accuracy                               0.74      2215
+    macro avg          0.65      0.64      0.65      2215
+    weighted avg       0.73      0.74      0.73      2215
+
+Y bueno a pesar de que este modelo obtuvo un mejor puntaje en la metrica 'log_loss', vemos que esta teniendo problemas para predecir las etiquetas de tipo 1 y 2, lo cual es totalmente logico ya que nuestras clases estan desequilibradas y el modelo no tiene suficientes datos para generalizar.
+
+La metrica recall es un buen estimador de como se desempeña nuestro modelo por clase, ya que puede interpretarse como: numero de predicciones correctas entre el total de elementos de la clase, como las clases estan desequilibradas observamos que en general para las clases [1, 2] solo podemos obtener recuperar aproximadamente 50% de predicciones correctas.
+
+### [XGBoost](https://github.com/Mahonry/Telstra-Network-Disruptions/blob/master/XGBoost.ipynb)
+
+Buscando mejorar mi puntuacion en Kaggle, probe un nuevo algortimo con las misma base que el anterior, llamado Extreme Gradient Boosting Classificator (XGBoost), este algortimo es una version mejorada del GBC.
+
+XGBoost significa Extreme Gradient Boosting; Es una implementación específica del método Gradient Boosting que utiliza aproximaciones más precisas para encontrar el mejor modelo. Emplea una serie de ingeniosos trucos que lo hacen excepcionalmente exitoso, particularmente con datos estructurados. Los mas importantes son:
+
+1.) calcular gradientes de segundo orden, es decir, segundas derivadas parciales de la función de pérdida, que proporciona más información sobre la dirección de los gradientes y cómo llegar al mínimo de nuestra función de pérdida. 
+
+2.) Y la regularización avanzada (L1 y L2), que mejora la generalización del modelo.
+
+De igual manera hice algunas iteraciones para probar el rendimiento, en este caso por cuestiones de tiempo use RandomizedSearchCV para buscar la mejor combinacion de hiperparametros y realice la ['submission_3'] que puntuo en Kaggle con el siguiente score:
+
+[imagen]
+
+A continuacion, igual que en el punto anterior, expongo la matriz de confusion y el reporte clasificatorio:
+
+[imagen]
+
+
+              precision    recall  f1-score   support
+
+           0       0.82      0.86      0.84      1417
+           1       0.60      0.53      0.56       583
+           2       0.56      0.55      0.56       215
+
+    accuracy                           0.74      2215
+    macro avg       0.66      0.65      0.65      2215
+    weighted avg       0.73      0.74      0.74      2215
+
+
+De aqui podemos concluir lo siguiente:
+
+- La diferencia entre las puntuaciones de Kaggle no fue tan significativa, ambos modelos GBC y XGBoost mostraron un rendimiento similar.
+
+- En cuanto a la metrica recall tampoco se muestran diferencias significativas, por lo que, XGBoost de igual manera presenta problemas por el desequilibrio de clases.
+
+- Es posible que haya una mejor seleccion de hiperparametros para XGBoost ya que no realice una busqueda exhaustiva de los mejores, solo probe combinaciones aleatorias.
+
+Sin embargo, la diferencia significativa entre GBC y XGBoost viene en la relevancia de features, a continuacion pongo la muestra de XGBoost
