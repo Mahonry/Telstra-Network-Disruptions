@@ -547,3 +547,8 @@ A continuación, describo los siguientes pasos que huebiese tomado con el fin de
 -	Tratar de encontrar patrones escondidos dentro de las features dadas.
 -	Usar algunas técnicas como ‘Up-sample Minority Class’ o ‘Down – sample Majority Class’ para tratar de balancear las clases.	
 
+
+###### Datos personales
+###### Nombre: Christian Mahonry Colorado Bulbarela (Mahonry)
+###### Fecha de inicio: 06/07/2020
+###### Fecha de entrega: 12/07/2020
