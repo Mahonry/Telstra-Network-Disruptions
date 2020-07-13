@@ -240,7 +240,7 @@ En general, seleccioné cuatro modelos funcionales para las clasificaciones mult
 
 * K Nearest Neighbors Classifier (KNN) 
 
-En estas pruebas no realice ninguna optimización de hiperparámetros, por lo que, todos los modelos fueron entrenados con los parámetros estándar.
+En estas pruebas no realicé ninguna optimización de hiperparámetros, por lo que, todos los modelos fueron entrenados con los parámetros estándar.
 
 Se pusieron a prueba los data sets 'train_1' y 'train_consolidado_completo', sin embargo, al hacer las primeras pruebas, pude percatarme de que no existía una diferencia significativa en los rendimientos, sin embargo el tiempo de entrenamiento del data set 'train_consolidado_completo'  era significativamente mayor. Debido a que mi objetivo era observar el panorama general de los rendimientos, descarté este último data set y todas las pruebas las realice con 'train_1'.
 
