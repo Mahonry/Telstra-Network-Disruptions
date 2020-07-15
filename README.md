@@ -10,7 +10,7 @@ Telstra es una empresa especializada en telecomunicaciones ubicada en Australia,
 
 Como en cualquier empresa que involucre infraestructura computacional, mantenimiento, crecimiento en la capacidad de brindar sus servicios y tecnología de punta, entre otras características, suelen presentarse fallas; estas pueden ser desde ligeras hasta muy severas. En un mundo donde la conectividad es imprescindible, identificar estas fallas y sus posibles causas, es vital para repararlas en el menor tiempo posible y brindar una mejor calidad en todos los servicios.
 
-Una combinación de causas, ya sean estas individuales o diversas pueden llevar a un mismo tipo de falla o severidad en la interrupción del servicio, una vez clasificadas, la pregunta a contestar es: ¿qué factores causan cada tipo de falla? para de esta manera prevenirlas. 
+Una combinación de causas, ya sean estas individuales o diversas pueden llevar a un mismo tipo de falla o severidad en la interrupción del servicio, una vez clasificadas, la pregunta a contestar es: ¿Con una combinación especifica de factores que tipo de falla puedo obtener? para de esta manera prevenirlas. 
 
 Para contestar esta pregunta, Telstra pone a disposición del publico una simulación de los datos generados al producirse un tipo de falla, con el objetivo de crear un modelo predictivo clasificatorio.
 
